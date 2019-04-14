@@ -23,6 +23,7 @@ const opn = require('opn'); // 开启浏览器
 const del = require('del'); // 删除dist文件夹
 const Config = require('./gulpfile.config');
 const { getPort } = require('./utils');
+var imageMin = require('gulp-imagemin');
 
 // 命令行传参数
 const knownOptions = {
@@ -74,7 +75,8 @@ const images = () => {
     .pipe(changed(Config.images.dist))
     .pipe(plumber())
     .pipe(gulp.dest(Config.images.dist))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
+    // .pipe(imageMin({progressive: true}));
 };
 
 // JS文件
